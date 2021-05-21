@@ -14,58 +14,36 @@ var hsScore = document.querySelector(".hs-score")
 var resultsEl = document.querySelector("#results")
 var replayBtn = document.querySelector(".back")
 
-var A = document.querySelector("#a")
-var B = document.querySelector("#b")
-var C = document.querySelector("#c")
-var D = document.querySelector("#d")
 
 var questions = [{
         question: "JavaScript File Has An Extension of:",
-        choiceA: "A) .java",
-        choiceB: "B) .js",
-        choiceC: "C) .script",
-        choiceD: "D) .javascript",
-        correctAnswer: "b",
+        choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
+        correctAnswer: "B) .js"
     },
     {
         question: "Which of the following is not a JavaScript data type:",
-        choiceA: "A) string",
-        choiceB: "B) boolean",
-        choiceC: "C) document",
-        choiceD: "D) number",
-        correctAnswer: "c",
+        choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
+        correctAnswer: "B) .js"
     },
     {
         question: "JavaScript File Has An Extension of:",
-        choiceA: "A) .java",
-        choiceB: "B) .js",
-        choiceC: "C) .script",
-        choiceD: "D) .javascript",
-        correctAnswer: "b",
+        choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
+        correctAnswer: "B) .js"
     },
     {
         question: "JavaScript File Has An Extension of:",
-        choiceA: "A) .java",
-        choiceB: "B) .js",
-        choiceC: "C) .script",
-        choiceD: "D) .javascript",
-        correctAnswer: "b",
+        choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
+        correctAnswer: "B) .js"
     },
     {
         question: "JavaScript File Has An Extension of:",
-        choiceA: "A) .java",
-        choiceB: "B) .js",
-        choiceC: "C) .script",
-        choiceD: "D) .javascript",
-        correctAnswer: "b",
+        choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
+        correctAnswer: "B) .js"
     },
     {
         question: "JavaScript File Has An Extension of:",
-        choiceA: "A) .java",
-        choiceB: "B) .js",
-        choiceC: "C) .script",
-        choiceD: "D) .javascript",
-        correctAnswer: "b",
+        choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
+        correctAnswer: "B) .js"
     },
 
 ];
@@ -94,16 +72,19 @@ function startQuiz() {
         }
     }, 1000);
 }
+
 function generateQuiz() {
-    if (currentQuestion === lastQuestion) {}
     var q = questions[currentQuestion];
-
+    var choicesDiv = document.querySelector(".choices")
+    choicesDiv.innerHTML = ""
     questionEl.innerHTML = q.question;
-    A.innerHTML = q.choiceA;
-    B.innerHTML = q.choiceB;
-    C.innerHTML = q.choiceC;
-    D.innerHTML = q.choiceD;
-
+    q.choices.forEach(function (choice) {
+        var choiceBtn = document.createElement("button");
+        choiceBtn.textContent = choice;
+        choiceBtn.setAttribute("value", choice)
+        choiceBtn.onclick = checkAnswer
+        choicesDiv.appendChild(choiceBtn)
+    })
     quizEl.style.display = "block";
 }
 
@@ -128,19 +109,25 @@ function replayQuiz() {
     gameOverEl.style.display = "none";
     quizEl.style.display = "none";
     rulesEl.style.display = "block";
-
-
 }
 
-function checkAnswer(answer) {
+function checkAnswer() {
+    console.log(this)
     correct = questions[currentQuestion].correctAnswer;
-    console.log(correct, answer, currentQuestion);
+    console.log(correct, currentQuestion);
 
-    if (answer === correct) {
+    if (this.value === correct) {
         totalPoints++;
-        alert("Correct Answer!");
+        resultsEl.textContent = "Correct";
+        setTimeout(function () {
+            resultsEl.textContent = ""
+        }, 500)
+
     } else {
-        alert("Wrong Answer!");
+        resultsEl.textContent = "Wrong";
+        setTimeout(function () {
+            resultsEl.textContent = ""
+        }, 500)
         timeStart = timeStart - penalty;
     }
 
@@ -163,69 +150,40 @@ function gameOver() {
         scoreEl.textContent = "Your final score is: " + timeRemaining;
         quizEl.style.display = "none";
     }
-
-
-
-    submitBtn.addEventListener("click", highScore);
-
-    function highScore() {
-        if (initials.value === "") {
-            alert("Must input your initials!");
-            return;
-        } else {
-            var savedHighscores =
-                JSON.parse(localStorage.getItem("savedHighscores")) || [];
-            var currentUser = initials.value.trim();
-            var currentHighscore = {
-                name: currentUser,
-                totalPoints: timeRemaining
-            };
-
-            gameOverEl.style.display = "none";
-            scoreList.style.display = "block";
-
-            savedHighscores.push(currentHighscore);
-            localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
-            generateHighscores();
-        }
-    }
-
-    function generateHighscores() {
-        hsInitials.innerHTML = "";
-        hsScore.innerHTML = "";
-
-        var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-        for (i = 0; i < highscores.length; i++) {
-            var nameStorage = document.createElement("li");
-            var scoreStorage = document.createElement("li");
-            nameStorage.textContent = highscores[i].name;
-            scoreStorage.textContent = highscores[i].totalPoints;
-            hsInitials.appendChild(nameStorage);
-            hsScore.appendChild(scoreStorage);
-        }
-    }
-
-
+    submitBtn.setAttribute("value", timeRemaining)
+    submitBtn.onclick = highScore
 }
+
+
+
+function highScore() {
+    console.log(this.value)
+    var scoreObj = {
+        score: this.value,
+        initials: initials.value.trim().toUpperCase()
+    };
+    console.log(scoreObj)
+    localStorage.setItem("highscoreEntry", JSON.stringify(scoreObj));
+    // gameOverEl.style.display = "none";
+    // scoreList.style.display = "block";
+
+
+
+
+    var highScores = JSON.parse(localStorage.getItem("highscoreEntry")) || [];
+    for(i = 0; i < highScores.length; i++) {
+        var scoreP = document.createElement('ul');
+        var scoreLi = document.createElement('li');
+        scoreLi.textContent = highScores[i].initials, highScores[i].score;
+        scoreP.append("li");
+    //     scoreP.textContent = [highScores.initials + "-" + highScores.score];
+    //     hsInitials.appendChild(scoreP);
+
+    }
+    
+    // hsInitials.innerHTML = highScores.initials + "-" + highScores.score
+    // hsScore.innerHTML = highScores.score;
+}
+
+console.log()
 startBtn.addEventListener("click", startQuiz);
-
-
-
-
-
-// function startQuiz() {
-//     rules.style.display = "none";
-//     generateQuiz();
-// }
-// function checkAnswer(answer) {
-//     correct = questions[currentQuestion].correct;
-//     if(answer === correct) {
-//        alert("good job")
-//         totalPoints++;
-//     }
-//     currentQuestion++;
-
-// }
-
-
-//  start.addEventListener("click", startQuiz);
