@@ -21,28 +21,28 @@ var questions = [
   },
   {
     question: "Which of the following is not a JavaScript data type:",
-    choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
-    correctAnswer: "B) .js",
+    choices: ["A) boolean", "B) string", "C) undefined", "D) document"],
+    correctAnswer: "D) document",
   },
   {
-    question: "JavaScript File Has An Extension of:",
-    choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
-    correctAnswer: "B) .js",
+    question: "Which of the following statements will show a message as well as ask for user input in a popup?",
+    choices: ["A) alert()", "B) prompt()", "C) confirm()", "D) message()"],
+    correctAnswer: "B) prompt()",
   },
   {
-    question: "JavaScript File Has An Extension of:",
-    choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
-    correctAnswer: "B) .js",
+    question: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+    choices: ["A) if (i != 5)", "B) if i <> 5", "C) if (i <> 5)", "D) if i =! 5 then"],
+    correctAnswer: "A) if (i != 5)",
   },
   {
-    question: "JavaScript File Has An Extension of:",
-    choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
-    correctAnswer: "B) .js",
+    question: "JavaScript is the same as Java.",
+    choices: ["True", "False"],
+    correctAnswer: "False",
   },
   {
-    question: "JavaScript File Has An Extension of:",
-    choices: ["A) .java", "B) .js", "C) .script", "D) .javascript"],
-    correctAnswer: "B) .js",
+    question: "Which operator is used to assign a value to a variable?",
+    choices: ["A) -", "B) *", "C) =", "D) x"],
+    correctAnswer: "C) =",
   },
 ];
 
@@ -91,20 +91,11 @@ function showHighScore() {
   gameOverEl.style.display = "none";
   scoreList.style.display = "block";
   displayHighscores();
-  setTimeout(disableFunction, 1);
 }
 
 function clearScore() {
   window.localStorage.clear();
   list.textContent = "";
-}
-
-function replayQuiz() {
-  scoreList.style.display = "none";
-  gameOverEl.style.display = "none";
-  quizEl.style.display = "none";
-  rulesEl.style.display = "block";
-  return generateQuiz;
 }
 
 function checkAnswer() {
