@@ -1,70 +1,122 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(38, 224, 69, 0.527);
 }
 
 .quiz-box {
-    position: absolute;
-    left: 30%;
-    top: 20%;
-    width: 600px;
-    height: 500px;
+  position: absolute;
+  left: 30%;
+  top: 20%;
+  width: 600px;
+  height: 500px;
+}
+
+.timer {
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
 }
 
 h1 {
-    display: flex;
-    border-bottom: 2px solid gray;
-    align-items: center;
-    padding: 3%;
+  display: flex;
+  border-bottom: 2px solid gray;
+  align-items: center;
+  padding: 3%;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+p {
+  font-size: 20px;
+}
+
+#initials {
+  font-size: 20px;
 }
 
 .rules,
 .quiz,
 .gameover,
 .scorelist {
-    background-color: honeydew;
-    border-width: 1px;
-    color: blue;
-    font-size: 15px;
-    margin: 0 auto;
-    max-width: 800px;
-    padding: 30px 40px;
+  background-color: rgba(230, 238, 115, 0.582);
+  border-width: 1px;
+  color: black;
+  font-size: 15px;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 30px 40px;
+}
+
+#results {
+  font-size: 50px;
 }
 .start,
 .submit {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    left: 35%;
-    border: none;
-    background-color: cadetblue;
-    color: blue;
-    display: center;
-    font-size: 13px;
-    margin: 16px 16px 16px 20px;
-    position: relative;
-    padding: 5px 12px;
-    text-align: center;
-    cursor: pointer;
-}
-
-#a,
-#b,
-#c,
-#d {
-    display: list-item;
-    border: none;
-    background-color: cornflowerblue;
-    color: blue;
-    display: center;
-    font-size: 13px;
-    margin: 16px 16px 16px 20px;
-    padding: 5px 12px;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  border: solid 2px green;
+  background-color: white;
+  color: green;
+  display: center;
+  font-size: 13px;
+  margin: 16px 16px 16px 20px;
+  position: relative;
+  padding: 5px 12px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .hide {
-    display: none;
+  display: none;
+}
+
+.score {
+  font-size: 21px;
 }
 
 .view-highscore {
-    margin-left: 380px;
+  margin-left: 515px;
+  margin-bottom: 5px;
+  border: solid 2px green;
+  background-color: white;
+  color: green;
+  font-size: 13px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+
+.list {
+  font-size: 20px;
+}
+
+.choices button {
+  background-color: green;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  cursor: pointer;
+  margin-top: 6px;
+  border: solid 2px black;
+}
+
+#question {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.clear {
+  border: solid 2px green;
+  background-color: white;
+  color: green;
+  font-size: 13px;
+  cursor: pointer;
 }

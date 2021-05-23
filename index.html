@@ -11,7 +11,7 @@
 
 <body>
   <div class="quiz-box">
-    <div class="timer">Time:</div>
+    <div class="timer">Time left:</div>
     <div class="highscore">
       <button class="view-highscore" onclick="showHighScore()">Highscores</button>
     </div>
@@ -21,31 +21,26 @@
         Try to answer as many of the following JavaScript related questions as
         you can. You'll have to be quick though because you only have 60
         seconds to answer all the questions. Keep in mind that for every
-        incorrect answer you will be penalized time/points.
+        incorrect answer you will be penalized time and points.
       </p>
       <button class="start">Begin Quiz</button>
     </div>
     <div class="quiz">
-      <div id="question"><p></p></div>
-      <button id="a" onclick="checkAnswer('a')"></button>
-      <button id="b" onclick="checkAnswer('b')"></button>
-      <button id="c" onclick="checkAnswer('c')"></button>
-      <button id="d" onclick="checkAnswer('d')"></button>
+      <div id="question"></div>
+      <div class="choices"></div>
       <div id="results"></div>
     </div>
     <div id="gameover" class="hide">
       <h2>Quiz Complete!</h2>
       <div class="score"></div>
       <input id="initials" type="text" placeholder="Enter your initials" />
-      <button class="submit">Submit</button>
+      <button class="submit"onclick="highScore()">Submit</button>
     </div>
     <div class="scorelist">
       <div id="scorecard">
-        <h1>Highscores</h1>
+        <h2>Highscores</h2>
+        <ul style="list-style-type:none;" class="list"></ul>
       </div>
-      <div class="hs-initials"></div>
-      <div class="hs-score"></div>
-      <button class="back" onclick="replayQuiz()">Try Again</button>
       <button class="clear" onclick="clearScore()">Clear highscores</button>
     </div>
 
