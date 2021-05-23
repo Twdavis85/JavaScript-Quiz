@@ -86,6 +86,7 @@ function generateQuiz() {
 }
 
 function showHighScore() {
+  list.innerHTML = ""
   rulesEl.style.display = "none";
   quizEl.style.display = "none";
   gameOverEl.style.display = "none";
